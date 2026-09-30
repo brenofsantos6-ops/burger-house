@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger House</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="#inicio" class="logo" data-rota="inicio">
+            <span class="logo-icone">B</span>
+            <span>BURGER <b>HOUSE</b></span>
+        </a>
+
+        <nav class="navegacao">
+            <a href="#inicio" data-rota="inicio">Início</a>
+            <a href="#cardapio" data-rota="cardapio">Cardápio</a>
+            <a href="#promocoes" data-rota="promocoes">Promoções</a>
+            <a href="#pedidos" data-rota="pedidos">Meus pedidos</a>
+            <a href="#contato" data-rota="contato">Contato</a>
+        </nav>
+
+        <button class="botao-carrinho" id="abrir-carrinho" aria-label="Abrir carrinho">
+            🛒 <span id="contador-carrinho">0</span>
+        </button>
+    </header>
+
+    <main>
+        <!-- INÍCIO -->
+        <section class="pagina ativa" id="pagina-inicio">
+            <div class="hero">
+                <div class="hero-texto">
+                    <span class="etiqueta">BURGER HOUSE</span>
+                    <h1>O melhor hambúrguer,<br><strong>na sua casa!</strong></h1>
+                    <p>Hambúrguer artesanal, ingredientes frescos e aquele sabor que dá vontade de pedir de novo.</p>
+                    <button class="botao-principal" data-rota="cardapio">PEDIR AGORA</button>
+                </div>
+                <div class="hero-imagem">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85" alt="Hambúrguer artesanal">
+                </div>
+            </div>
+
+            <div class="secao-destaques">
+                <div class="titulo-secao">
+                    <span>OS FAVORITOS</span>
+                    <h2>Mais pedidos da semana</h2>
+                </div>
+                <div class="grade-produtos" id="produtos-inicio"></div>
+            </div>
+        </section>
+
+        <!-- CARDÁPIO -->
+        <section class="pagina" id="pagina-cardapio">
+            <div class="topo-pagina">
+                <div>
+                    <span class="etiqueta">BURGER HOUSE</span>
+                    <h1>Nosso Cardápio</h1>
+                </div>
+                <div class="filtros" id="filtros">
+                    <button class="filtro ativo" data-categoria="todos">Todos</button>
+                    <button class="filtro" data-categoria="burgers">Burgers</button>
+                    <button class="filtro" data-categoria="combos">Combos</button>
+                    <button class="filtro" data-categoria="bebidas">Bebidas</button>
+                </div>
+            </div>
+            <div class="grade-produtos grande" id="lista-produtos"></div>
+        </section>
+
+        <!-- PRODUTO -->
+        <section class="pagina" id="pagina-produto">
+            <button class="voltar" data-rota="cardapio">← Voltar ao cardápio</button>
+            <div class="produto-detalhe">
+                <div class="produto-foto">
+                    <img id="detalhe-imagem" src="" alt="">
+                </div>
+                <div class="produto-info">
+                    <span class="etiqueta" id="detalhe-categoria">BURGER</span>
+                    <h1 id="detalhe-nome">Cheddar Bacon</h1>
+                    <div class="preco-grande" id="detalhe-preco">R$ 29,90</div>
+                    <p id="detalhe-descricao"></p>
+
+                    <div class="opcoes">
+                        <h3>Escolha os adicionais</h3>
+                        <label><input type="checkbox" value="4" data-extra="Bacon extra"> Bacon extra <b>+ R$ 4,00</b></label>
+                        <label><input type="checkbox" value="3" data-extra="Queijo extra"> Queijo extra <b>+ R$ 3,00</b></label>
+                        <label><input type="checkbox" value="2" data-extra="Molho especial"> Molho especial <b>+ R$ 2,00</b></label>
+                    </div>
+
+                    <div class="quantidade">
+                        <button id="diminuir">−</button>
+                        <span id="quantidade">1</span>
+                        <button id="aumentar">+</button>
+                    </div>
+
+                    <button class="botao-principal largo" id="adicionar-produto">ADICIONAR AO CARRINHO</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CARRINHO / PEDIDO -->
+        <section class="pagina" id="pagina-pedidos">
+            <div class="topo-pagina simples">
+                <div>
+                    <span class="etiqueta">SEU PEDIDO</span>
+                    <h1>Resumo do Pedido</h1>
+                </div>
+            </div>
+
+            <div class="endereco-entrega">
+                <div>
+                    <span class="etiqueta">ENTREGA</span>
+                    <h2>Onde entregar?</h2>
+                    <p id="status-localizacao">Informe sua localização para o entregador encontrar você.</p>
+                </div>
+                <button class="botao-principal" id="usar-localizacao">📍 USAR MINHA LOCALIZAÇÃO</button>
+                <div class="endereco-manual">
+                    <div class="campo-endereco"><label for="endereco-rua">Rua</label><input id="endereco-rua" type="text" placeholder="Nome da rua"></div>
+                    <div class="campo-endereco pequeno"><label for="endereco-numero">Número</label><input id="endereco-numero" type="text" placeholder="123"></div>
+                    <div class="campo-endereco"><label for="endereco-bairro">Bairro</label><input id="endereco-bairro" type="text" placeholder="Seu bairro"></div>
+                    <div class="campo-endereco"><label for="endereco-cidade">Cidade</label><input id="endereco-cidade" type="text" placeholder="Sua cidade - BA"></div>
+                    <button class="botao-secundario" id="salvar-endereco">SALVAR ENDEREÇO</button>
+                </div>
+                <div class="localizacao-confirmada" id="localizacao-confirmada">
+                    <span>📍</span>
+                    <div>
+                        <strong>Localização definida</strong>
+                        <p id="coordenadas-localizacao">Localização pronta para a entrega.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pedido-layout">
+                <div class="itens-pedido" id="itens-pedido"></div>
+
+                <aside class="resumo">
+                    <h2>Resumo do Pedido</h2>
+                    <div class="linha"><span>Subtotal</span><strong id="subtotal">R$ 0,00</strong></div>
+                    <div class="linha"><span>Taxa de entrega</span><strong id="entrega">R$ 6,99</strong></div>
+                    <hr>
+                    <div class="linha total"><span>Total</span><strong id="total">R$ 6,99</strong></div>
+                    <button class="botao-principal largo" id="finalizar-pedido">FINALIZAR PEDIDO</button>
+                </aside>
+            </div>
+        </section>
+
+        <!-- SUCESSO -->
+        <section class="pagina" id="pagina-sucesso">
+            <div class="sucesso">
+                <div class="icone-sucesso">✓</div>
+                <h1>PEDIDO REALIZADO!</h1>
+                <p>Obrigado pela preferência. Seu pedido já está sendo preparado.</p>
+                <div class="recibo">
+                    <h3>RESUMO DO PEDIDO</h3>
+                    <div id="recibo-itens"></div>
+                    <div class="linha total"><span>Total</span><strong id="recibo-total">R$ 0,00</strong></div>
+                </div>
+                <div class="acoes-sucesso">
+                    <button class="botao-principal" data-rota="inicio">VOLTAR AO INÍCIO</button>
+                    <button class="botao-secundario" data-rota="cardapio">VER CARDÁPIO</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROMOÇÕES -->
+        <section class="pagina" id="pagina-promocoes">
+            <div class="topo-pagina simples">
+                <div>
+                    <span class="etiqueta">OFERTAS</span>
+                    <h1>Promoções</h1>
+                </div>
+            </div>
+            <div class="promocao">
+                <div>
+                    <span class="etiqueta">COMBO DA SEMANA</span>
+                    <h2>2 Burgers + 2 Bebidas</h2>
+                    <p>Escolha dois hambúrgueres do cardápio e duas bebidas por um preço especial.</p>
+                    <button class="botao-principal" data-rota="cardapio">VER OFERTAS</button>
+                </div>
+                <strong>R$ 49,90</strong>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section class="pagina" id="pagina-contato">
+            <div class="topo-pagina simples">
+                <div>
+                    <span class="etiqueta">FALE CONOSCO</span>
+                    <h1>Contato</h1>
+                </div>
+            </div>
+            <div class="contato-grid">
+                <div class="cartao-contato">
+                    <h3>BURGER HOUSE</h3>
+                    <p>Rua dos Sabores, 100<br>Limoeiro - BA</p>
+                </div>
+                <div class="cartao-contato">
+                    <h3>ATENDIMENTO</h3>
+                    <p>Segunda a domingo<br>18h às 23h</p>
+                </div>
+                <div class="cartao-contato">
+                    <h3>CONTATO</h3>
+                    <p>(71) 99999-0000<br>contato@burgerhouse.com</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div>
+            <h3>BURGER <b>HOUSE</b></h3>
+            <p>O sabor que combina com você.</p>
+        </div>
+        <div>
+            <h4>CONTATO</h4>
+            <p>📍 Limoeiro - BA</p>
+            <p>☎ (71) 99999-0000</p>
+        </div>
+        <div>
+            <h4>HORÁRIOS</h4>
+            <p>Seg. a Dom. — 18h às 23h</p>
+        </div>
+    </footer>
+
+    <div class="notificacao" id="notificacao"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
